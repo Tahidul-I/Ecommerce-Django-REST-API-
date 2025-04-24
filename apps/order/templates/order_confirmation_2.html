@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+{% load tz %}
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Order Placed</title>
+</head>
+
+<body style="margin: 0; padding: 0; background-color: #f7f7f7; font-family: Arial, sans-serif;">
+    <div
+        style="max-width: 640px; margin: 0 auto; padding: 24px; background-color: #ffffff; border: 1px solid #ddd;border-radius:8px;">
+        <!-- Header with logo and date -->
+        <header style="width: 100%; border-spacing: 0; border-collapse: collapse;">
+            <table style="width: 100%; border-spacing: 0;">
+                <tr>
+                    <td style="vertical-align: middle; text-align: left;">
+                        <a href="https://meherunbeauty.abroadportals.com/" target="_blank">
+                            <img src="https://i.ibb.co/JBBhRV4/logo.jpg" alt="Meherun Western Beauty Products"
+                                style="width: 144px;">
+                        </a>
+                    </td>
+                    <td style="vertical-align: middle; text-align: right;">
+                        <p style="margin-top: 10px; font-size: 16px;">{% now "Y-m-d" %}</p>
+                    </td>
+                </tr>
+            </table>
+        </header>
+
+        <!-- Main content with order details -->
+        <main style="text-align: left;">
+            <h2 style="font-size: 18px; color: #374151;">Hi {{ order.name }},</h2>
+            <p style="font-size: 16px; color: #6b7280;">
+                Thank you so much for shopping with us! Your order has been successfully received and is currently
+                pending. Here are the details:
+            </p>
+
+            <!-- Order items table -->
+            <div style="overflow-x: auto; margin: 0 auto; width: 100%; ">
+                <table style="min-width: 600px; margin: 16px auto; border-collapse: collapse;">
+                    <thead>
+                        <tr style="background-color: #f3f4f6;">
+                            <th style="padding: 12px; border: 1px solid #d1d5db; font-size: 16px;">Product</th>
+                            <th style="padding: 12px; border: 1px solid #d1d5db; text-align: center; font-size: 16px;">
+                                Dimension</th>
+                            <th style="padding: 12px; border: 1px solid #d1d5db; text-align: center; font-size: 16px;">
+                                Quantity</th>
+                            <th style="padding: 12px; border: 1px solid #d1d5db; text-align: center; font-size: 16px;">
+                                Unit Price</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for item in order_items %}
+                        <tr>
+                            <td style="padding: 12px; border: 1px solid #d1d5db; font-size: 16px;">{{ item.product.product.title }}</td>
+                            <td style="padding: 12px; border: 1px solid #d1d5db; text-align: center; font-size: 16px;">
+                                {{ item.dimension }}</td>
+                            <td style="padding: 12px; border: 1px solid #d1d5db; text-align: center; font-size: 16px;">
+                                {{ item.quantity }}</td>
+                            <td style="padding: 12px; border: 1px solid #d1d5db; text-align: center; font-size: 16px;">৳
+                                {{ item.price }}</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                    <tfoot>
+                        <tr>
+                            <td colspan="3"
+                                style="padding: 12px; border: 1px solid #d1d5db; text-align: left; font-size: 16px;">
+                                Subtotal</td>
+                            <td style="padding: 12px; border: 1px solid #d1d5db; text-align: center; font-size: 16px;">৳
+                                {{ order.sub_total }}</td>
+                        </tr>
+                        <tr>
+                            <td colspan="3"
+                                style="padding: 12px; border: 1px solid #d1d5db; text-align: left; font-size: 16px;">
+                                Discount</td>
+                            <td style="padding: 12px; border: 1px solid #d1d5db; text-align: center; font-size: 16px;">
+                                {{ order.discount_percentage }} %</td>
+                        </tr>
+                        <tr>
+                            <td colspan="3"
+                                style="padding: 12px; border: 1px solid #d1d5db; text-align: left; font-size: 16px;">
+                                Shipping Cost</td>
+                            <td style="padding: 12px; border: 1px solid #d1d5db; text-align: center; font-size: 16px;">৳
+                                {{ order.shipping_cost }}</td>
+                        </tr>
+                        <tr>
+                            <td colspan="3"
+                                style="padding: 12px; border: 1px solid #d1d5db; text-align: left; font-size: 16px; font-weight: bold;">
+                                Total</td>
+                            <td
+                                style="padding: 12px; border: 1px solid #d1d5db; text-align: center; font-size: 16px; font-weight: bold;">
+                                ৳ {{ order.total_amount }}</td>
+                        </tr>
+                    </tfoot>
+                </table>
+            </div>
+
+
+            <p style="font-size: 16px; color: #6b7280;">We’re preparing your items and will notify you when they're on
+                their way. Feel free to reach out to our support team for any questions.</p>
+
+            <!-- Track your order link -->
+            <p style="font-size: 16px; color: #6b7280;">
+                You can <a href="https://meherunbeauty.abroadportals.com/checkout/track_order_details/{{order.id}}"
+                    target="_blank" style="color: #ec4899; text-decoration: none;">track your order here</a>.
+            </p>
+
+            <p style="font-size: 16px; color: #6b7280;">Thank you for choosing Meherun’s Western Beauty Products!</p>
+            <p style="font-size: 16px; color: #6b7280;">Best Wishes,<br><span
+                    style="font-size: 20px; color: #ec4899;">Meherun's Team</span></p>
+        </main>
+        <hr style="border: 1px solid #e5e7eb; margin: 24px 0;">
+        <!-- Footer -->
+        <footer style="text-align: center; margin-top: 32px;">
+            <h3 style="font-size: 18px; color: #374151;">Get In Touch With Us</h3>
+            <p style="font-size: 16px; color: #6b7280;">Stay updated with the latest products.</p>
+
+            <!-- Social media icons -->
+            <div style="margin-top: 16px;">
+                <a href="#" style="margin: 0 10px;"><img
+                        src="https://res.cloudinary.com/dohwf5pyi/image/upload/v1724049517/samples/Meherun/fbicon_dinof3.png"
+                        alt="Facebook" style="width: 30px; height: 30px;"></a>
+                <a href="#" style="margin: 0 10px;"><img src="https://i.ibb.co/cJbSJ2K/twitter.png" alt="Twitter"
+                        style="width: 30px; height: 30px;"></a>
+                <a href="#" style="margin: 0 10px;"><img src="https://i.ibb.co/P60Jbqy/insta.png" alt="Instagram"
+                        style="width: 30px; height: 30px;"></a>
+                <a href="https://wa.me/+8801733843279" target="_blank" style="margin: 0 10px;"><img
+                        src="https://res.cloudinary.com/dohwf5pyi/image/upload/v1724049588/samples/Meherun/whatsappicon_ggbe0z.png"
+                        alt="WhatsApp" style="width: 30px; height: 30px;"></a>
+            </div>
+
+            <p style="font-size: 14px; color: #6b7280; margin-top: 16px;">This email was sent to <a href="#"
+                    style="color: #ec4899; text-decoration: none;">contact@meherun.com</a>. To unsubscribe, click <a
+                    href="#" style="color: #ec4899; text-decoration: none;">here</a>.</p>
+            <p style="font-size: 14px; color: #6b7280;">© 2024 Meherun Western Beauty. All Rights Reserved.</p>
+        </footer>
+    </div>
+
+</body>

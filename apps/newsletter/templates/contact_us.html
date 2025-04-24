@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<!DOCTYPE html>
+{% load tz %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Order Placed</title>
+</head>
+
+<body style="margin: 0; padding: 0; background-color: #f7f7f7; font-family: Arial, sans-serif;">
+    <div style="max-width: 640px; margin: 0 auto; padding: 24px; background-color: #ffffff; border: 1px solid #ddd;border-radius:8px;">
+        <!-- Header with logo and date -->
+        <header style="width: 100%; border-spacing: 0; border-collapse: collapse;">
+            <table style="width: 100%; border-spacing: 0;">
+                <tr>
+                    <td style="vertical-align: middle; text-align: left;">
+                        <a href="https://meherunbeauty.abroadportals.com/" target="_blank">
+                            <img src="https://i.ibb.co/JBBhRV4/logo.jpg" alt="Meherun Western Beauty Products" style="width: 144px;">
+                        </a>
+                    </td>
+                    <td style="vertical-align: middle; text-align: right;">
+                        <p style="margin-top: 10px; font-size: 16px;">{% now "Y-m-d" %}</p>
+                    </td>
+                </tr>
+            </table>
+        </header>
+
+        <!-- Main content with order details -->
+        <main style="text-align: left;">
+            <h2 style="font-size: 18px; color: #374151;">Hi {{ name}},</h2>
+            <p style="font-size: 16px; color: #6b7280;text-align:justify;white-space: pre-wrap;">{{message}}</p>
+            <p style="font-size: 16px; color: #6b7280;">Best Regards,<br><span style="font-size: 20px; color: #ec4899;">Meherun's Team</span></p>
+        </main>
+
+        <hr style="border: 1px solid #e5e7eb; margin: 24px 0;">
+        <!-- Footer -->
+        <footer style="text-align: center; margin-top: 32px;">
+            <h3 style="font-size: 18px; color: #374151;">Get In Touch With Us</h3>
+            <p style="font-size: 16px; color: #6b7280; margin-top: 8px;">Get the most up to date Product Info.</p>
+
+            <div style="margin-top: 16px;">
+                <a href="#" style="margin: 0 10px; text-decoration:none;">
+                    <img src="https://res.cloudinary.com/dohwf5pyi/image/upload/v1724049517/samples/Meherun/fbicon_dinof3.png"
+                        alt="Facebook" style="width: 30px; height: 30px;">
+                </a>
+                <a href="#" style="margin: 0 10px; text-decoration:none;">
+                    <img src="https://i.ibb.co/cJbSJ2K/twitter.png" alt="Twitter" style="width: 30px; height: 30px;">
+                </a>
+                <a href="#" style="margin: 0 10px; text-decoration:none;">
+                    <img src="https://i.ibb.co/P60Jbqy/insta.png" alt="Instagram" style="width: 30px; height: 30px;">
+                </a>
+                <a href="#" style="margin: 0 10px; text-decoration:none;">
+                    <img src="https://res.cloudinary.com/dohwf5pyi/image/upload/v1724049588/samples/Meherun/whatsappicon_ggbe0z.png"
+                        alt="WhatsApp" style="width: 30px; height: 30px;">
+                </a>
+            </div>
+
+            <p style="font-size: 14px; color: #6b7280; margin-top: 16px;">This email was sent to <a href="#"
+                    style="color: #ec4899; text-decoration: none;">contact@meherun.com</a>. If you'd rather not receive
+                this kind of email, you can <a href="#" style="color: #ec4899; text-decoration: none;">unsubscribe</a>.
+            </p>
+
+            <p style="font-size: 14px; color: #6b7280;">© 2024 Meherun Western Beauty. All Rights Reserved.</p>
+        </footer>
+    </div>
+</body>
+</html>
+
+

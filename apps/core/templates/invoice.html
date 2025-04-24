@@ -1,0 +1,107 @@
+{% load math_filters %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Invoice</title>
+</head>
+
+<body>
+    <div>
+            <div style="padding-bottom:20px;">
+                <table> 
+                    <tr>
+                        <td><img src="https://i.ibb.co/XyM2xMk/logo.webp" alt="Logo of Meherun Western Beauty Product" style="height:100px;width:200px;"></td>
+                        <td></td>
+                    </tr>
+                </table>
+            </div>
+
+        <div>
+            <table>
+                <tr>
+                    <td style="width:450px;"><h2>Billing Details</h2></td>
+                    <td style="padding-left:40px;"><h2>Meherun Beauty Products<h2></td>
+                    
+                </tr>
+                <tr>
+                    <td>Name: {{order.name}}</td>
+                    <td style="padding-left:40px;">Avenue : 2 , House No : 1332 & 1347</td>
+                    
+                </tr>
+                <tr>
+                    <td>Email: {{order.email}}</td>
+                    <td style="padding-left:40px;">Mirpur,DOHS,Dhaka</p></td>
+                    
+                </tr>
+                <tr>
+                    <td>Phone: {{order.phone}}</td>
+                    <td></td>
+                    
+                </tr>
+                <tr>
+                    <td>Address: {{order.address}}</td>
+                    <td style="padding-left:40px;"><h2>Invoice Number: #{{order.id}}</h2></td>
+                </tr>
+                <tr>
+                    <td>{{order.city}}, {{order.country}}</td>
+                    <td style="padding-left:40px;">Order ID: {{order.tracking_no}}</td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td style="padding-left:40px;">Order Date: {{order.created_at}}</td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td style="padding-left:40px;">Payment Method: {{order.payment_mode}}</td>
+                </tr>
+                
+            </table>
+        </div>
+        <!-- Billing and Shipping Info -->
+
+        <!-- Order Summary -->
+        <div style="padding-top:20px;">
+            <h2>Order Summary</h2>
+            <table  style="text-align: center;border-collapse: collapse;border:1px solid gray;">
+                <tr>
+                    <td style="width:300px;padding-top:5px;">Prooduct</td>
+                    <td style="padding-top:5px;">Specification</td>
+                    <td style="padding-top:5px;">Unit Price</td>
+                    <td style="padding-top:5px;">Quantity</td>
+                    <td style="padding-top:5px;">Total</td>
+                </tr>
+                {% for item in order.order_item.all %}
+                    <tr>
+                        <td style="width:300px;padding-top:5px;">{{item.product.product.title}}</td>
+                        <td style="padding-top:5px;">{{item.product.dimension}}</td>
+                        <td style="width:200px;padding-top:5px;">{{item.price}} Tk</td>
+                        <td style="padding-top:5px;">{{item.quantity}}</td>
+                        <td style="padding-top:5px;">{{ item.price|multiply:item.quantity }} Tk</td>
+                    </tr>
+                {% endfor %}
+                <tr>
+                    <td colspan="4" style="text-align:center;padding-top:5px;padding-bottom:3px;">Sub-Total</td>
+                    <td style="padding-top:3px;">{{order.sub_total}} Tk</td>
+                </tr>
+                <tr>
+                    <td colspan="4" style="text-align:center;padding-top:5px;padding-bottom:3px;">Discount</td>
+                    <td style="padding-top:3px;">-{{ order.sub_total|discount:order.discount_percentage }} Tk</td>
+                </tr>
+                <tr>
+                    <td colspan="4" style="text-align:center;padding-top:5px;padding-bottom:3px;">Shipping Cost</td>
+                    <td style="padding-top:3px;">{{order.shipping_cost}} Tk</td>
+                </tr>
+                <tr>
+                    <td colspan="4" style="text-align:center;padding-top:5px;padding-bottom:3px;">Total</td>
+                    <td style="padding-top:3px;">{{order.total_amount}} Tk</td>
+                </tr>
+                
+            </table>
+        </div>
+
+        <!-- Footer -->
+    </div>
+</body>
+</html>
